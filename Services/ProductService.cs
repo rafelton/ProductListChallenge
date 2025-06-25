@@ -30,12 +30,14 @@ namespace ProductListChallenge.Services
         }
         public void Add(Product product)
         {
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            _context.Products.Add(product);            
         }
         public void Update(Product product)
         {
-            var existing = _context.Products.Find(product.Id);
+            var existing = _context.Products
+                .Where(p => p.Id == product.Id)
+                .FirstOrDefault();
+
             if (existing != null)
             {
                 existing.Name = product.Name;
@@ -45,7 +47,10 @@ namespace ProductListChallenge.Services
         }
         public void Delete(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = _context.Products
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+
             if (product != null)
             {
                 _context.Products.Remove(product);
