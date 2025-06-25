@@ -30,7 +30,8 @@ namespace ProductListChallenge.Services
         }
         public void Add(Product product)
         {
-            _context.Products.Add(product);            
+            _context.Products.Add(product);
+            _context.SaveChanges();
         }
         public void Update(Product product)
         {
@@ -42,7 +43,6 @@ namespace ProductListChallenge.Services
             {
                 existing.Name = product.Name;
                 existing.Price = product.Price;
-                _context.SaveChanges();
             }
         }
         public void Delete(int id)
