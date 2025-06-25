@@ -1,0 +1,20 @@
+@model IEnumerable<ProductListChallenge.Models.Product>
+@{
+    ViewBag.Title = "Product List";
+}
+<h2>Product List</h2>
+<p>
+    @Html.ActionLink("Add Product", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Price.ToString("C")</td>
+    </tr>
+}
+</table>
